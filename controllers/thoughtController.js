@@ -126,6 +126,7 @@ module.exports = {
     getSingleThought,
     createThought,
     updateThought,
+    deleteThought,
     createReaction,
     deleteReaction
 }
