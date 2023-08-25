@@ -40,7 +40,7 @@ const ThoughtSchema = new Schema(
             maxLength: 280,
         },
         createdAt: {
-            type: DataTransfer,
+            type: Date,
             default: Date.now,
             get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] h:mm a") 
             // used moment.js as new built in package to format dates instead of using an utils folder
@@ -62,4 +62,4 @@ ThoughtSchema.virtual("reactionCount").get(function () {
 
 const Thought = model("Thought", ThoughtSchema);
 
-module.exports = { Thought };
+module.exports = Thought;

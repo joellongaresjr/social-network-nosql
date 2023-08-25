@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+const { User, Thought } = require("../models/index");
 
 const getUser = async (req, res) => {
   try {
@@ -50,12 +50,12 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.findOneAndDelete({ _id: req.params.userId });
+    const user = await User.findOneAndDelete({ _id: req.params.userId }); // removing from array of thoughts
 
     if (!user) {
       return res.status(404).json({ message: "No User found with this ID!" });
     }
-    await Thought.deleteMany({ _id: { $in: user.thoughts } });
+    await Thought.deleteMany({ _id: { $in: user.thoughts } }); // $pulll
     res.json({ message: "User and Thought deleted!" });
   } catch (err) {
     res.status(500).json(err);
