@@ -10,7 +10,7 @@ const getThought = async (req, res) => {
     }
 };
 
-
+// Get a single Thought's Data (from ID)
 const getSingleThought = async (req, res) => {
     try {
         const thought = await Thought.findOne({_id: req.params.thoughtId}).select('-__v');
@@ -25,6 +25,7 @@ const getSingleThought = async (req, res) => {
     }
 };
 
+// Creating a new Thought
 const createThought = async (req, res) => {
     try {
         const thought = await Thought.create(req.body);
@@ -45,6 +46,7 @@ const createThought = async (req, res) => {
     }
 };
 
+// Update a Thought
 const updateThought = async (req, res) => {
     try {
         const thought = await Thought.findOneAndUpdate(
@@ -63,6 +65,7 @@ const updateThought = async (req, res) => {
     }
 };
 
+// Delete Thoughts
 const deleteThought = async (req, res) => {
     try {
         const thought = await Thought.findOneAndDelete({_id: req.params.thoughtId});
@@ -87,6 +90,7 @@ const deleteThought = async (req, res) => {
     }
 };
 
+// Creating a reaction for a Thought
 const createReaction = async (req, res) => {
     try {
         const thought = await Thought.findOneAndUpdate(
@@ -105,6 +109,7 @@ const createReaction = async (req, res) => {
     }
 };
 
+// Deleting a reaction from a Thought 
 const deleteReaction = async (req, res) => {
     try {
         const thought = await Thought.findOneAndUpdate(

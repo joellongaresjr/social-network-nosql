@@ -52,6 +52,7 @@ const updateUser = async (req, res) => {
   }
 };
 
+// Deleting User
 const deleteUser = async (req, res) => {
   try {
     const user = await User.findOneAndDelete({ _id: req.params.userId }); // removing from array of thoughts
@@ -66,6 +67,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// Adding a friend to the User (affilated with User ID)
 const addFriend = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
@@ -82,6 +84,7 @@ const addFriend = async (req, res) => {
   }
 };
 
+// Delete a friend for User (by ID)
 const deleteFriend = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(

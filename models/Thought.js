@@ -21,7 +21,7 @@ const ReactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] h:mm a")
+            get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] h:mm a") //moment.js
         }
     },
     {
@@ -43,7 +43,7 @@ const ThoughtSchema = new Schema(
             type: Date,
             default: Date.now,
             get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] h:mm a") 
-            // used moment.js as new built in package to format dates instead of using an utils folder
+            // used moment.js as new built in javascript library to format dates (12 hour -minutes -am/pm)
         },
         username: {
             type: String,
