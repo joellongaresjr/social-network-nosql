@@ -1,5 +1,6 @@
 const { User, Thought } = require("../models/index");
 
+// Getting all User's Data 
 const getUser = async (req, res) => {
   try {
     const users = await User.find({});
@@ -9,9 +10,10 @@ const getUser = async (req, res) => {
   }
 };
 
+// Getting a single User's Data (from Id) / populating 'friends' & 'thoughts' data
 const getSingleUser = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.params.userId }).select("-__v");
+    const user = await User.findOne({ _id: req.params.userId }).select("-__v").populate('friends').populate('thoughts');
 
     if (!user) {
       return res.status(404).json({ message: "No User found with that ID!" });
@@ -22,6 +24,7 @@ const getSingleUser = async (req, res) => {
   }
 };
 
+// Creating a new User
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -32,6 +35,7 @@ const createUser = async (req, res) => {
   }
 };
 
+// Updating a User 
 const updateUser = async (req, res) => {
   try {
     const user = await User.findOneAndUpdate(
@@ -55,7 +59,7 @@ const deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "No User found with this ID!" });
     }
-    await Thought.deleteMany({ _id: { $in: user.thoughts } }); // $pulll
+    await Thought.deleteMany({ _id: { $in: user.thoughts } }); 
     res.json({ message: "User and Thought deleted!" });
   } catch (err) {
     res.status(500).json(err);
